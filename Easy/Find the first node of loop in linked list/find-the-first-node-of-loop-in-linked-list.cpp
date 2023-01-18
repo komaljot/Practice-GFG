@@ -51,21 +51,25 @@ class Solution
         if(head==NULL)return false;
          Node* fast=head;
          Node* slow=head;
-         Node* temp=head;
-         while(fast->next!=NULL and fast->next->next!=NULL){
+       
+         while(fast!=NULL and fast->next!=NULL){
              fast=fast->next->next;
              slow=slow->next;
              if(fast==slow){
-                 while(slow!=temp){
-                     slow=slow->next;temp=temp->next;
-                 }
-                 return temp->data;
+                break;
              }
            
            
              
          }
-         return -1;
+        
+         if(fast==NULL or fast->next==  NULL)return -1;
+          slow=head;
+         while(fast!=slow){
+             fast=fast->next;slow=slow->next;
+         }
+         return slow->data;
+         
     }
 };
 
