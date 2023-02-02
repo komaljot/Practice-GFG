@@ -11,24 +11,25 @@ using namespace std;
 class Solution{
     //Function to find the leaders in the array.
     public:
-    vector<int> leaders(int arr[], int n){
+    vector<int> leaders(int a[], int n){
         // Code here
         vector<int>ans;
-        stack<long long>s;
-        s.push(arr[n-1]);
-     int i=n-2;
-         //for(int i=n-2;i>=0;i--){
-        while(i>=0){
-            if(arr[i]>=s.top()){s.push(arr[i]);}
-             i--;
-            
+        stack<int>s;
+        s.push(a[n-1]);
+       // for(int i=n-2;i>=0;i--){
+       int i=n-2;
+       while(i>=0){
+            if(a[i]>=s.top()){
+                s.push(a[i]);
+            }
+            i--;
         }
-        
         while(!s.empty()){
             ans.push_back(s.top());
             s.pop();
         }
         return ans;
+        
     }
 };
 
