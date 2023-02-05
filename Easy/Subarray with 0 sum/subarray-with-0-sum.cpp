@@ -14,27 +14,18 @@ class Solution{
     bool subArrayExists(int arr[], int n)
     {
         //Your code here
-        // int s=0;
+        int s=0;
         
-        // unordered_map<int,int>mp;
-        // mp[0]++;
-        // for(int i=0;i<n;i++){
-        //     s=s+arr[i];
-        //     mp[s]++;
-            
-            
-        // }
-        // for(auto x:mp)if(x.second>1)return true;
-        // else return false;
-        unordered_map<int ,int> mp ;
-        int sum=0; 
-        mp[0]++; 
-         for(int i=0; i<n; i++){
-             sum+=arr[i]; 
-             mp[sum]++; 
-         }
-         for(auto x:mp) if(x.second>1) return true; 
-         return false; 
+        unordered_map<int,int>mp;
+        mp[0]++;
+        for(int i=0;i<n;i++){
+            s+=arr[i];
+            mp[s]++;
+        }
+        for(auto it:mp){
+            if(it.second>1)return true;
+        }
+        return false;
     }
 };
 
