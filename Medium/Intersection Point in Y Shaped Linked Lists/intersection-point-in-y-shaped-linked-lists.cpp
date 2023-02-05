@@ -62,7 +62,7 @@ int l(Node* head){
     int intersectPoint(Node* head1, Node* head2)
     {
         // Your Code Here
-        if(head1==NULL)return head2->data;
+         if(head1==NULL)return head2->data;
         if(head2==NULL)return head1->data;
         int len1=l(head1);
         int len2=l(head2);
