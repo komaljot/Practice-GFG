@@ -14,7 +14,7 @@ public:
         string ans;
         int i=0;
         int n=s.length();
-        while(s[i]){
+        while(i<n){
             if(s[i]!=s[i+1]){
                 ans+=s[i];
             }
@@ -27,7 +27,7 @@ public:
 
     return ans;
 
-    return rremove(ans);
+   return rremove(ans);
 
     }
     
