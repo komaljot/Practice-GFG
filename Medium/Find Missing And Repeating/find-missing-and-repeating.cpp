@@ -11,32 +11,25 @@ public:
         int re=-1;
         int me=n+1;
         int *ans=new int[2];
-        //for finding repeating number
+        //for finding REPEATING ELEMENT------
         for(int i=0;i<n;i++){
+            //this implies element already exists!
             if(arr[abs(arr[i])-1]<0){
                 re=abs(arr[i]);
             }
-           else  arr[abs(arr[i])-1]=-arr[abs(arr[i])-1];
+            //turning the element negative if it does not exist
+           else arr[abs(arr[i])-1]=-arr[abs(arr[i])-1];
             
         }
+        
+        //for finding MISSING ELEMENT------
         for(int i=0;i<n;i++){
+            //index+1 of the only positive element left will be our answer
             if(arr[i]>=0)me=i+1;
         }
         ans[0]=re;ans[1]=me;
         return ans;
-        
-        // unordered_map<int,int>mp;
-        // for(int i=0;i<n;i++){
-        //     mp[arr[i]]++;
-            
-        // }
-        // for(int i=0;i<=n;i++){
-        //     if(mp[i]==2)re=i;
-        //     if(mp[i]==0)me=i;
-            
-        // }
-        // ans[0]=re;ans[1]=me;
-        // return ans;
+      
     }
 };
 
