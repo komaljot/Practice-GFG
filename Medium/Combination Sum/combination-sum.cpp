@@ -12,38 +12,27 @@ class Solution {
   public:
     //Function to return a list of indexes denoting the required 
     //combinations whose sum is equal to given number.
-    void helper(vector<int> &A,int n, int B,vector<int>&t,vector<vector<int>>&ans,int ind){
-        //base case
-        
+    void f(vector<int>&A, int B, vector<vector<int>>&ans, vector<int>&t,int ind,int n){
         if(ind==n){
-            if(B==0){//sort(t.begin(),t.end());
-            ans.push_back(t);}
+            if(B==0)ans.push_back(t);
             return;
         }
-        
-        //using same element
         if(A[ind]<=B){
-            //pushing the element
-            t.push_back(A[ind]);
-            helper(A,n,B-A[ind],t,ans,ind);
-            //removing that element
-            t.pop_back();
+        t.push_back(A[ind]);
+        f(A,B-A[ind],ans,t,ind,n);
+        t.pop_back();
         }
-       // using next element
-        helper(A,n,B,t,ans,ind+1);
+        f(A,B,ans,t,ind+1,n);
+        
     }
-    
-    
     
     vector<vector<int> > combinationSum(vector<int> &A, int B) {
         // Your code here
-        vector<vector<int>> ans;
+        vector<vector<int>>ans;
         vector<int>t;
         sort(A.begin(),A.end());
-
         A.erase(unique(A.begin(),A.end()),A.end());
-        helper(A,A.size(),B,t,ans,0);
-       
+        f(A,B,ans,t,0,A.size());
         //sort(ans.begin(),ans.end());
         return ans;
     }
