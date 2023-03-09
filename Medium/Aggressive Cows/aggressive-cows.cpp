@@ -9,32 +9,42 @@ using namespace std;
 
 class Solution {
 public:
-bool check(int n, int k, vector<int> &stalls,int s){
-    int co=stalls[0];int cnt=1;
+bool helper(int n, int k, vector<int> &stalls,int s){
+    int cord=stalls[0];int cnt=1;
     for(int i=1;i<n;i++){
-        if(stalls[i]-co>=s){
+        if(stalls[i]-cord>=s){
+            cord=stalls[i];
             cnt++;
-            co=stalls[i];
         }
         if(cnt==k)return true;
-        
     }
     return false;
+    
+    
 }
 
 
     int solve(int n, int k, vector<int> &stalls) {
+    
         // Write your code here
         sort(stalls.begin(),stalls.end());
-        int s=1;int ans=0;
+        int ans=0;
+        //setting the search space
+        int s=1;
         int e=stalls[n-1]-stalls[0];
+        int mid;
         while(s<=e){
-            int mid=s+(e-s)/2;
-            if(check(n,k,stalls,mid)){
+            mid=s+(e-s)/2;
+            
+            //if we find any one with the number
+            if(helper(n,k,stalls,mid)){
                 ans=mid;
+                //to maximise
                 s=mid+1;
             }
             else e=mid-1;
+            
+            
         }
         return ans;
     }
