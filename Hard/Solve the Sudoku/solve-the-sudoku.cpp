@@ -14,7 +14,7 @@ class Solution
 {
     public:
     //Function to find a solved Sudoku. 
-    bool helper(int grid[N][N],int r,int c,int k){
+      bool solver(int grid[N][N],int r,int c,int k){
         for(int i=0;i<9;i++){
             if(grid[r][i]==k)return false;
             if(grid[i][c]==k)return false;
@@ -23,27 +23,28 @@ class Solution
         return true;
         
     }
+    
     bool SolveSudoku(int grid[N][N])  
     { 
         // Your code here
         for(int i=0;i<N;i++){
             for(int j=0;j<N;j++){
-                //to find empty
-                if(grid[i][j]==0){
-                    for(int k=1;k<=9;k++){
-                        if(helper(grid,i,j,k)){
-                            grid[i][j]=k;
-                            if(SolveSudoku(grid)==true)return true;
-                            else grid[i][j]=0;
-                        }
+                if(grid[i][j]==0){//check if 0
+                for(int k=1;k<=9;k++){
+                    if(solver(grid,i,j,k)){
+                        grid[i][j]=k;
+                        if(SolveSudoku(grid)==true)return true;
+                        else grid[i][j]=0;
                     }
-                     return false;
-                   
+                }
+                return false;
+                    
                 }
                 
             }
         }
         return true;
+        
     }
     
     //Function to print grids of the Sudoku.
