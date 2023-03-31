@@ -9,28 +9,35 @@ using namespace std;
 
 class Solution{
 public:
-void helper(int col,int n,vector<int>&board,vector<int>&left,vector<int>&ld,vector<int>&ud,vector<vector<int>>&ans){
-    if(col==n){ans.push_back(board);return;}
+
+void helper(int col,int n,vector<int>&board,vector<vector<int>>&ans,vector<int>&left,vector<int>&ud,vector<int>&ld){
+    if(col==n){
+        ans.push_back(board);
+        return;
+    }
     for(int row=0;row<n;row++){
         if(left[row]==0 and ld[row+col]==0 and ud[n-1+col-row]==0){
-            left[row]=1; ld[row+col]=1; ud[n-1+col-row]=1;
             board[row]=col+1;
-            helper(col+1,n,board,left,ld,ud,ans);
-            left[row]=0; ld[row+col]=0; ud[n-1+col-row]=0;
+            left[row]=1;ld[row+col]=1;ud[n-1+col-row]=1;
+            helper(col+1,n,board,ans,left,ud,ld);
             board[row]=0;
+            left[row]=0;ld[row+col]=0;ud[n-1+col-row]=0;
+            
         }
     }
 }
+
     vector<vector<int>> nQueen(int n) {
         // code here
-        vector<vector<int>>ans;
+         vector<vector<int>>ans;
         vector<int>board(n,0);
         vector<int>left(n,0);
         vector<int>ud(2*n-1,0);
         vector<int>ld(2*n-1,0);
-        helper(0,n,board,left,ld,ud,ans);
+        helper(0,n,board,ans,left,ud,ld);
         sort(ans.begin(),ans.end());
         return ans;
+         
     }
 };
 
