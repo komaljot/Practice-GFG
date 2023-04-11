@@ -125,7 +125,7 @@ struct Node
 
 //Function to return a list containing the postorder traversal of the tree.
 void po(Node* root,vector<int>&ans){
-    if(root==NULL)return;
+    if(root==NULL)return ;
     if(root->left)po(root->left,ans);
     if(root->right)po(root->right,ans);
     ans.push_back(root->data);
@@ -134,7 +134,6 @@ vector <int> postOrder(Node* root)
 {
   // Your code here
   vector<int>ans;
-  if(root==NULL)return ans;
   po(root,ans);
   return ans;
 }
