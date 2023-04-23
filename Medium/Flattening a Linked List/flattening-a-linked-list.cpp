@@ -112,36 +112,36 @@ struct Node{
 /*  Function which returns the  root of 
     the flattened linked list. */
     
-Node* mergeTwoll(Node* a,Node* b){
-    Node* temp=new Node(0);
-    Node* head=temp; 
     
-    while(a!=NULL and b!=NULL){
-        if(a->data<b->data){
-            temp->bottom=a;
+Node* merge(Node* temp1, Node* temp2){
+    Node* temp=new Node(-1);
+    Node* head=temp;
+   
+    while(temp1!=NULL and temp2!=NULL){
+        if(temp1->data<temp2->data){
+            temp->bottom=temp1;
             temp=temp->bottom;
-            a=a->bottom;
+            temp1=temp1->bottom;
         }
         else{
-            temp->bottom=b;
+            temp->bottom=temp2;
             temp=temp->bottom;
-            b=b->bottom;
+            temp2=temp2->bottom;
         }
-
+        
     }
-    if(a)temp->bottom=a;
-    else temp->bottom=b;
-    
+   if(temp1)temp->bottom=temp1;
+   if(temp2)temp->bottom=temp2;
     return head->bottom;
-}
-
+}    
+    
 Node *flatten(Node *root)
 {
-  if(root==NULL || root->next==NULL)return root;
-  root->next=flatten(root->next);
-  root=mergeTwoll(root,root->next);
-  return root;
-  
+   // Your code here
+   if(root==NULL || root->next==NULL)return root;
+   root->next=flatten(root->next);
+   root=merge(root,root->next);
+   return root;
    
 }
 
