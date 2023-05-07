@@ -27,49 +27,43 @@ class Solution
 {
     public:
     //Function to find the maximum profit and the number of jobs done.
-    static bool comp(Job a,Job b){
-        //sorts in descending order
+    static bool comp(Job a, Job b){
         return a.profit>b.profit;
     }
     
     vector<int> JobScheduling(Job arr[], int n) 
     { 
         // your code here
-        
-        //1) sorting array in decreasing order in terms of profit!
-        sort(arr,arr+n,comp);
-        
-        //2)find maximum deadline
-        int max_deadline=INT_MIN;
+        int maxdead=0;
         for(int i=0;i<n;i++){
-            max_deadline=max(max_deadline,arr[i].dead);
+            maxdead=max(maxdead,arr[i].dead);
         }
-        vector<int>s(max_deadline+1,-1);
-        int c=0;int totalprofit=0;
-        
-      
+        sort(arr,arr+n,comp);
+        int c=0;
+        int maxprofit=0;
+        vector<int>v(maxdead+1,-1);
         for(int i=0;i<n;i++){
-           int iid=arr[i].id;
-           int ddead=arr[i].dead;
-           int pprofit=arr[i].profit;
+            int idd=arr[i].id;
+            int deadd=arr[i].dead;
+            int profitt=arr[i].profit;
             
-            for(int k=ddead;k>0;k--){
-                if(s[k]==-1){
+            for(int k=deadd;k>0;k--){
+                if(v[k]==-1){
                     c++;
-                    totalprofit+=pprofit;
-                    s[k]=iid;
+                    maxprofit+=profitt;
+                    v[k]=deadd;
                     break;
+                   
                 }
             }
+        
+            
         }
-            vector<int>ans;
+         vector<int>ans;
             ans.push_back(c);
-            ans.push_back(totalprofit);
+            ans.push_back(maxprofit);
             return ans;
             
-        
-        
-        
     } 
 };
 
