@@ -12,28 +12,33 @@ class Solution {
   public:
     //Function to return a list of indexes denoting the required 
     //combinations whose sum is equal to given number.
-    void f(vector<int>&A, int B, vector<vector<int>>&ans, vector<int>&t,int ind,int n){
-        if(ind==n){
-            if(B==0)ans.push_back(t);
-            return;
-        }
-        if(A[ind]<=B){
-        t.push_back(A[ind]);
-        f(A,B-A[ind],ans,t,ind,n);
-        t.pop_back();
-        }
-        f(A,B,ans,t,ind+1,n);
-        
-    }
     
-    vector<vector<int> > combinationSum(vector<int> &A, int B) {
+    void helper(vector<int>& candidates, int target,vector<vector<int>>&ans,vector<int>&t,int ind){
+    if(ind>=candidates.size()){
+        if(target==0){
+            ans.push_back(t);
+        }
+        return;
+    }
+    if(target>=candidates[ind]){
+        t.push_back(candidates[ind]);
+        //take
+        helper(candidates,target-candidates[ind],ans,t,ind);
+        t.pop_back();
+    }
+
+    //not take
+    helper(candidates,target,ans,t,ind+1);
+}
+    
+    vector<vector<int> > combinationSum(vector<int> &candidates, int target) {
         // Your code here
-        vector<vector<int>>ans;
+         vector<vector<int>>ans;
         vector<int>t;
-        sort(A.begin(),A.end());
-        A.erase(unique(A.begin(),A.end()),A.end());
-        f(A,B,ans,t,0,A.size());
-        //sort(ans.begin(),ans.end());
+        sort(candidates.begin(),candidates.end());
+        candidates.erase(unique(candidates.begin(),candidates.end()),candidates.end());
+        helper(candidates,target,ans,t,0);
+        sort(ans.begin(),ans.end());
         return ans;
     }
 };
