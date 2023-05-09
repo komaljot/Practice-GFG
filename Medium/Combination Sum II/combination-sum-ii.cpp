@@ -9,26 +9,30 @@ using namespace std;
 
 class Solution {
   public:
- void helper(vector<int> &candidates, int target,vector<vector<int>>&ans,int ind,vector<int>&t){
+  
+  void helper(vector<int> &candidates, int target,vector<vector<int>>&ans,vector<int>&t,int ind){
       if(target==0){
           ans.push_back(t);
           return;
       }
       for(int i=ind;i<candidates.size();i++){
-          if(i>ind and candidates[i]==candidates[i-1])continue;
-          if(candidates[i]>target)break;
+          if(i!=ind and candidates[i]==candidates[i-1])continue;
+          if(target<candidates[i])break;
+          
           t.push_back(candidates[i]);
-          helper(candidates,target-candidates[i],ans,i+1,t);
+          helper(candidates,target-candidates[i],ans,t,i+1);
           t.pop_back();
       }
+      
   }
   
+  
     vector<vector<int>> combinationSum2(vector<int> &candidates, int target) {
-        // Write your code here
+        
         vector<vector<int>>ans;
         vector<int>t;
         sort(candidates.begin(),candidates.end());
-        helper(candidates,target,ans,0,t);
+        helper(candidates,target,ans,t,0);
         return ans;
         
     }
