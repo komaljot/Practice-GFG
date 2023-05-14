@@ -41,13 +41,13 @@ class Solution
         sort(arr,arr+n,comp);
         int c=0;
         int maxprofit=0;
-        vector<int>v(maxdead+1,-1);
+        vector<int>v(maxdead,-1);
         for(int i=0;i<n;i++){
             int idd=arr[i].id;
-            int deadd=arr[i].dead;
+            int deadd=arr[i].dead-1;
             int profitt=arr[i].profit;
             
-            for(int k=deadd;k>0;k--){
+            for(int k=deadd;k>=0;k--){
                 if(v[k]==-1){
                     c++;
                     maxprofit+=profitt;
