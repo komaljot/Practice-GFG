@@ -5,29 +5,27 @@ using namespace std;
 // } Driver Code Ends
 class Solution{
 	public:
-	
-	void helper(int i,int n,string s,string t,vector<string>&ans){
-	    if(i>=s.length()){
-	        if(t.length()>0){
-	            ans.push_back(t);
-	           
-	        }
-	         return;
-	    }
-	    //not pick
-	    helper(i+1,n,s,t,ans);
-	    //pick;
-	    t.push_back(s[i]);
-	    helper(i+1,n,s,t,ans);
-	    
-	}
-	
 		vector<string> AllPossibleStrings(string s){
 		    // Code here
+		    //using bit manipulation
+		    
+		    int n=pow(2,s.length());
 		    vector<string>ans;
-		    string t;
-		    helper(0,s.length(),s,t,ans);
-		   sort(ans.begin(),ans.end());
+		    
+		    for(int i=1;i<n;i++){
+		        int x=i;
+		        int j=0;
+		        string c="";
+		        while(x){
+		            if(x&1)c+=s[j];
+		            
+		            j++;
+		            x=x>>1;
+		            
+		        }
+		        ans.push_back(c);
+		    }
+		    sort(ans.begin(),ans.end());
 		    return ans;
 		}
 };
