@@ -15,7 +15,10 @@ class Solution{
         
         // Your code here  
         if(n==0)return false;
-        if(n&(n-1))return false;
+        while(n>1){
+            if(n&1)return false;
+            n=n>>1;
+        }
         return true;
         
     }
