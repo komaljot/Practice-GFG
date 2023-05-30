@@ -14,20 +14,13 @@ class Solution{
     int countBitsFlip(int a, int b){
         
         // Your logic here
-        // int count=0;
-        // while(a and b){
-        //     if(a^b==1)count++;
-        //     a=a>>1;
-        //     b=b>>1;
-        // }
-        // return count;
-        int c=a^b;
-        int count=0;
-        while(c){
-            if(c&1)count++;
-            c=c>>1;
+        int xorr=a^b;
+        int cnt=0;
+        while(xorr){
+            if(xorr&1)cnt++;
+            xorr=xorr>>1;
         }
-        return count;
+        return cnt;
         
     }
 };
