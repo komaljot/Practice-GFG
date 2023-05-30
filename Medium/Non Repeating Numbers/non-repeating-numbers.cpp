@@ -9,24 +9,31 @@ public:
     vector<int> singleNumber(vector<int> nums) 
     {
         // Code here.
-        int n=nums.size();
         vector<int>ans;
-        //to find righmost significant bit
-        int x=0;
-        for(int i=0;i<n;i++){
-            x=x^nums[i];
-         }
-         
-        int rmsbt=x&~(x-1);
-        
-        int p=0;int q=0;
-        
-        for(int i=0;i<n;i++){
-            if(nums[i]&rmsbt)p=p^nums[i];
-            else q=q^nums[i];
+        int xorr=0;
+        for(int i=0;i<nums.size();i++){
+            xorr=xorr^nums[i];
         }
-        ans.push_back(p);
-        ans.push_back(q);
+        // int rmsb=1;
+        // while(xorr){
+        //     if(xorr&1){break;}
+        //     rmsb++;
+        //     xorr=xorr>>1;
+            
+        // }
+        // cout<<rmsb;
+         int rmsb=xorr&~(xorr-1);
+        //  cout<<rmsb;
+        int x=0;
+        int y=0;
+        for(int i=0;i<nums.size();i++){
+            if((rmsb&nums[i]))x=x^nums[i];
+            else y=y^nums[i];
+            
+            
+        }
+        ans.push_back(x);
+        ans.push_back(y);
         sort(ans.begin(),ans.end());
         return ans;
     }
