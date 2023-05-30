@@ -1,4 +1,4 @@
-<h2><a href="https://practice.geeksforgeeks.org/problems/isomorphic-strings-1587115620/1?page=1&difficulty[]=0&status[]=unsolved&sortBy=submissions">Isomorphic Strings</a></h2><h3>Difficulty Level : Easy</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Given two strings '<strong>str1</strong>' and '<strong>str2</strong>', check if these two&nbsp;strings are isomorphic to each other.<br>
+<h2><a href="https://practice.geeksforgeeks.org/problems/isomorphic-strings-1587115620/1">Isomorphic Strings</a></h2><h3>Difficulty Level : Easy</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Given two strings '<strong>str1</strong>' and '<strong>str2</strong>', check if these two&nbsp;strings are isomorphic to each other.<br>
 Two strings str1 and str2 are called isomorphic if there is a one to one mapping possible for every character of str1 to every character of str2 while <strong>preserving the order</strong>.<br>
 Note:&nbsp;All occurrences of every character in str1 should map to the same character in str2</span></p>
 
