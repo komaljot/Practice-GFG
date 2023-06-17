@@ -78,6 +78,7 @@ struct MyQueue {
 void MyQueue:: push(int x)
 {
         // Your Code
+        //null wali side pr
         QueueNode* q=new QueueNode(x);
         if(front==NULL){
            front=q;
