@@ -31,23 +31,34 @@ int main() {
 
 vector<long long> printFirstNegativeInteger(long long int A[],
                                              long long int N, long long int K) {
-         
-         vector<long long>ans;
-         queue<long long>q;
-         for(int i=0;i<K-1;i++){
-             if(A[i]<0)q.push(A[i]);
-         }
-         for(int i=K-1;i<N;i++){
-             if(A[i]<0)q.push(A[i]);
-             if(!q.empty()){
-                 ans.push_back(q.front());
-                 if(q.front()==A[i-K+1])q.pop();
-             }
-             else{
-                 ans.push_back(0);
-             }
-             
-         }
-         return ans;
-                                                 
+                  
+                  vector<long long>ans;
+                 //brute force-------------------------------- 
+                //   for(int i=0;i<N-K+1;i++){
+                //       bool f=false;
+                //       for(int j=i;j<i+K;j++){
+                //           if(A[j]<0){ans.push_back(A[j]);f=true;break;}
+                //       }
+                //       if(f==false)ans.push_back(0);
+                      
+                //   }
+                
+                
+                int i=0;int j=0;
+                queue<int>q;
+                while(j<N){
+                    if(A[j]<0)q.push(A[j]);
+                    if(j-i+1<K)j++;
+                    else if(j-i+1==K){
+                        if(!q.empty())
+                        ans.push_back(q.front());
+                        else ans.push_back(0);
+                        
+                        if(A[i]==q.front())q.pop();
+                        i++;j++;
+                    }
+                }
+                
+                
+                  return ans;
  }
