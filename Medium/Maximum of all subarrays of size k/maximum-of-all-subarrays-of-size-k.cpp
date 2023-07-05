@@ -12,43 +12,33 @@ class Solution
 {
   public:
     //Function to find maximum of each subarray of size k.
-    vector <int> max_of_subarrays(int *nums, int n, int k)
+    vector <int> max_of_subarrays(int *arr, int n, int k)
     {
-        // // your code here
-        // vector<int>ans;
-        // if(n==1){
-        //     ans.push_back(arr[0]);return ans;}
-        // int maxi=INT_MIN;
-        // for(int i=0;i<=k-1;i++){
-        //     maxi=max(maxi,arr[i]);
-            
-        // }
-        // ans.push_back(maxi);
-        // int i=k-1;
-        // int j=i+1;
-        // while(j<n){
-        //     maxi=max(maxi,arr[j]);
-        //     ans.push_back(maxi);
-        //     i++;j++;
-        // }
-        // return ans;
-         deque<int>dq;
+        // your code here
         vector<int>ans;
-        for(int i=0;i<n;i++){
-            //out of bound indexes
-            if(!dq.empty() and dq.front()==i-k)dq.pop_front();
-
-            //this will help us to maintain dec order sequence
-            while(!dq.empty() and nums[dq.back()]<=nums[i])dq.pop_back();
-
-            dq.push_back(i);
-
-            if(i>=k-1)ans.push_back(nums[dq.front()]);
-
-
+        deque<int>dq;
+        int i=0;
+        int j=0;
+        int maxi=INT_MIN;
+        while(j<n){
+            while(dq.size()>0 and dq.back()<arr[j]){
+                dq.pop_back();
+            }
+            dq.push_back(arr[j]);
+            if(j-i+1<k)j++;
+            else if(j-i+1==k){
+                ans.push_back(dq.front());
+                if(!dq.empty() and arr[i]==dq.front() ){
+                    dq.pop_front();
+                }
+                
+                i++;j++;
+            }
+            
+          
+        
         }
         return ans;
-        
     }
 };
 
