@@ -8,8 +8,8 @@ class Solution{
     public:
     int longestUniqueSubsttr(string S){
         //code
-        // vector<int>m(26,0);
-        int m[26]={0};
+       
+       int m[26]={0};
         int i=0;
         int j=0;
         int ans=0;
