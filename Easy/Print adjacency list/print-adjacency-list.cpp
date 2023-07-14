@@ -10,13 +10,12 @@ class Solution {
         // Code here
         vector<vector<int>>ans;
         for(int i=0;i<V;i++){
-            vector<int>temp;
-            temp.push_back(i);
+            vector<int>t;
+            t.push_back(i);
             for(auto it:adj[i]){
-                temp.push_back(it);
-                
+                t.push_back(it);
             }
-            ans.push_back(temp);
+            ans.push_back(t);
         }
         return ans;
     }
