@@ -61,10 +61,9 @@ void MyStack ::push(int x)
 int MyStack ::pop() 
 {
     // Your Code
-    if(top!=NULL){
-        int ans=top->data;
-        top=top->next;
-        return ans;
-    }
-    return -1;
+    if(top==NULL)return -1;
+    int t=top->data;
+    
+    top=top->next;
+    return t;
 }
