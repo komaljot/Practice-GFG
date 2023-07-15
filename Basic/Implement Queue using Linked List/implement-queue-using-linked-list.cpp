@@ -78,25 +78,23 @@ struct MyQueue {
 void MyQueue:: push(int x)
 {
         // Your Code
-        //null wali side pr
+        
         QueueNode* q=new QueueNode(x);
         if(front==NULL){
-           front=q;
-           rear=q;
+            front=q;rear=q;
         }
-         else{
+        else{
         rear->next=q;
         rear=rear->next;}
+        
 }
 
 //Function to pop front element from the queue.
 int MyQueue :: pop()
 {
-        // Your Code 
-        if(front!=NULL){
-            int ans=front->data;
-            front=front->next;
-            return ans;
-        }
-        return -1;
+        // Your Code  
+        if(front==NULL)return -1;
+        int t=front->data;
+        front=front->next;
+        return t;
 }
