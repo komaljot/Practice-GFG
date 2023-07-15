@@ -12,28 +12,21 @@ class Solution
     bool ispar(string x)
     {
         // Your code here
+        if(x.length()==0 or x.length()==1)return false;
         stack<int>s;
         for(int i=0;i<x.length();i++){
-            //if opening bracket
             if(x[i]=='[' or x[i]=='(' or x[i]=='{'){
                 s.push(x[i]);
+                
             }
-            
-            //closing bracket!
-           
-           
             else{
-                if (s.empty())return false;
-                if((x[i]=='}' and s.top()=='{') or
-                (x[i]==']' and s.top()=='[') or
-                (x[i]==')' and s.top()=='(')){
-                    s.pop();
-                }
-                
+                if(s.empty())return false;
+                if(!s.empty() and (x[i]==']' and s.top()=='[') or (x[i]=='}' and s.top()=='{') or
+                 (x[i]==')' and s.top()=='(')){
+                     s.pop();
+                 }
                 else return false;
-                
             }
-        
         }
         if(s.empty())return true;
         else return false;
