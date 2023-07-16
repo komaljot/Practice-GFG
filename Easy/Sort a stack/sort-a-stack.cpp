@@ -52,27 +52,22 @@ public:
 you are required to complete the below method */
 
 void sortedInsert(stack<int>&s,int x){
-    if(s.empty() or (!s.empty() and s.top()<x)){
-        s.push(x);return;
-        
-    }
-    int ele=s.top();
+    if(s.empty() or (!s.empty() and s.top()<x)){s.push(x);return;}
+    
+    int t=s.top();
     s.pop();
     sortedInsert(s,x);
-    s.push(ele);
-    
-    
+    s.push(t);
 }
+
 void SortedStack :: sort()
 {
    //Your code here
-   
    if(s.empty())return;
-   
-   int ele=s.top();
+   int t=s.top();
    s.pop();
    sort();
    
-   sortedInsert(s,ele);
+   sortedInsert(s,t);
    
 }
