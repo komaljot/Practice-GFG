@@ -9,56 +9,47 @@ class Solution
     public:
     //Function to find largest rectangular area possible in a given histogram.
     
-    vector<int>nextSmaller(long long arr[],int n){
-        vector<int>ans(n);
+    vector<int> prevsmaller(long long arr[], int n){
+         vector<int>ps(n);
+       
         stack<int>s;
-        s.push(-1);
-        for(int i=n-1;i>=0;i--){
-            while(s.top()!=-1 and arr[s.top()]>=arr[i]){
-                s.pop();
-            }
-            ans[i]=s.top();
-            s.push(i);
-        }
-        return ans;
-    }
-    vector<int>prevSmaller(long long arr[],int n){
-        vector<int>ans(n);
-        stack<int>s;
-        s.push(-1);
         for(int i=0;i<n;i++){
-            while(s.top()!=-1 and arr[s.top()]>=arr[i]){
-                s.pop();
-            }
-            ans[i]=s.top();
+            while(!s.empty() and arr[s.top()]>=arr[i])s.pop();
+            
+            if(s.empty())ps[i]=0;
+            else ps[i]=s.top()+1;
             s.push(i);
         }
-        return ans;
+        return ps;
+       
     }
-    
-    
-    
+     vector<int> nextsmaller(long long arr[], int n){
+         vector<int>ns(n);
+       
+        stack<int>s;
+        for(int i=n-1;i>=0;i--){
+            while(!s.empty() and arr[s.top()]>=arr[i])s.pop();
+            
+            if(s.empty())ns[i]=n-1;
+            else ns[i]=s.top()-1;
+            s.push(i);
+        }
+        return ns;
+       
+    }
     
     long long getMaxArea(long long arr[], int n)
     {
         // Your code here
-        vector<int>ns(n);vector<int>ps(n);
-        ns=nextSmaller(arr,n);ps=prevSmaller(arr,n);
-        long long area=LONG_MIN;
+         vector<int>ps(n);
+        vector<int>ns(n);
+       ps= prevsmaller(arr,n);
+        ns=nextsmaller(arr,n);
+        long long ans=-1;
         for(int i=0;i<n;i++){
-            long long l=arr[i];
-            
-            if(ns[i]==-1)ns[i]=n;
-            
-            long long b=ns[i]-ps[i]-1;
-            
-            long long newarea=l*b;
-            if(newarea>area)area=newarea;
-            // area=max(area,newarea);
-            
+            ans=max(ans,(ns[i]-ps[i]+1)*arr[i]);
         }
-        // for(int i=0;i<n;i++)cout<<ps[i]<<" "<<ns[i]<<endl;
-        return area;
+        return ans;
     }
 };
 
