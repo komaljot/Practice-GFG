@@ -45,16 +45,19 @@ class Solution
     vector<int> levelOrder(Node* node)
     {
       //Your code here
+      vector<int>ans;
       queue<Node*>q;
       q.push(node);
-      vector<int>ans;
       while(!q.empty()){
-          if(q.front()->left!=NULL)q.push(q.front()->left);
-          if(q.front()->right!=NULL)q.push(q.front()->right);
-          ans.push_back(q.front()->data);
+          Node* t=q.front();
+          ans.push_back(t->data);
           q.pop();
+          if(t->left)q.push(t->left);
+          if(t->right)q.push(t->right);
+          
       }
       return ans;
+      
       
     }
 };
