@@ -131,18 +131,18 @@ struct Node
 vector<int> leftView(Node *root)
 {
    // Your code here
-   queue<Node*>q;
    vector<int>ans;
    if(root==NULL)return ans;
+   queue<Node*>q;
    q.push(root);
    while(!q.empty()){
-       int size=q.size();
-       for(int i=0;i<size;i++){
-       Node* curr=q.front();
-       q.pop();
-       if(i==0)ans.push_back(curr->data);
-       if(curr->left)q.push(curr->left);
-       if(curr->right)q.push(curr->right);
+       int n=q.size();
+       for(int i=0;i<n;i++){
+           Node* t=q.front();
+           q.pop();
+           if(i==0)ans.push_back(t->data);
+           if(t->left)q.push(t->left);
+           if(t->right)q.push(t->right);
        }
    }
    return ans;
