@@ -106,41 +106,44 @@ struct Node
 class Solution {
 public:
 void lefti(Node* root,vector<int>&ans){
-    if(root==NULL or(root->left==NULL and root->right==NULL))return;
-    // if(level==ans.size())ans.push_back(root->data);
+    if(root==NULL or (root->left==NULL and root->right==NULL))return ;
+    
     ans.push_back(root->data);
     if(root->left)lefti(root->left,ans);
     else lefti(root->right,ans);
     
 }
 void righti(Node* root,vector<int>&ans){
-    if(root==NULL or(root->left==NULL and root->right==NULL))return;
+    if(root==NULL or (root->left==NULL and root->right==NULL))return ;
+    
     
     if(root->right)righti(root->right,ans);
     else righti(root->left,ans);
     ans.push_back(root->data);
     
 }
-void lefi(Node* root,vector<int>&ans){
+
+void leafy(Node* root,vector<int>&ans){
     if(root==NULL)return;
     if(root->left==NULL and root->right==NULL){ans.push_back(root->data);return;}
-
-    if(root->left)lefi(root->left,ans);
-    if(root->right)lefi(root->right,ans);
+    
+    leafy(root->left,ans);
+    leafy(root->right,ans);
 }
+
 
     vector <int> boundary(Node *root)
     {
         //Your code here
         vector<int>ans;
-        if(root==NULL)return ans;
+         if(root==NULL)return ans;
+        if(root->left==NULL && root->right==NULL)return {root->data};
+        
         ans.push_back(root->data);
        lefti(root->left,ans);
-       lefi(root->left,ans);
-       lefi(root->right,ans);
+    leafy(root,ans);
        righti(root->right,ans);
         return ans;
-        
     }
 };
 
