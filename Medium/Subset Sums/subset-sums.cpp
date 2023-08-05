@@ -7,24 +7,23 @@ class Solution
 {
 public:
 
-void helper(vector<int>arr,int N,vector<int>&ans,int i,int s){
+void helper(vector<int> arr, int N,int i,vector<int>&ans,int sum){
     if(i==N){
-        ans.push_back(s);
+        ans.push_back(sum);
         return;
     }
-    //included
-    helper(arr,N,ans,i+1,s+arr[i]);
-    
-    //not included
-    helper(arr,N,ans,i+1,s);
- 
+    helper(arr,N,i+1,ans,sum+arr[i]);
+    helper(arr,N,i+1,ans,sum);
 }
+
 
     vector<int> subsetSums(vector<int> arr, int N)
     {
         // Write Your Code here
         vector<int>ans;
-        helper(arr,N,ans,0,0);
+        int i=0;
+        int sum=0;
+        helper(arr,N,i,ans,sum);
         return ans;
     }
 };
