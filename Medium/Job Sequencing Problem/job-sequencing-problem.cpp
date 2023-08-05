@@ -27,43 +27,38 @@ class Solution
 {
     public:
     //Function to find the maximum profit and the number of jobs done.
-    static bool comp(Job a, Job b){
-        return a.profit>b.profit;
+    static bool comp(Job a,Job b){
+        return (a.profit>b.profit);
     }
     
     vector<int> JobScheduling(Job arr[], int n) 
     { 
         // your code here
-        int maxdead=0;
-        for(int i=0;i<n;i++){
-            maxdead=max(maxdead,arr[i].dead);
-        }
+        vector<int>ans;
         sort(arr,arr+n,comp);
-        int c=0;
-        int maxprofit=0;
-        vector<int>v(maxdead,-1);
+        int maxidead=INT_MIN;
         for(int i=0;i<n;i++){
-            int idd=arr[i].id;
-            int deadd=arr[i].dead-1;
-            int profitt=arr[i].profit;
-            
-            for(int k=deadd;k>=0;k--){
-                if(v[k]==-1){
-                    c++;
-                    maxprofit+=profitt;
-                    v[k]=deadd;
+            maxidead=max(maxidead,arr[i].dead);
+        }
+        vector<int>profit(maxidead+1,-1);
+        
+        int maxprofit=0;
+        int cnt=0;
+        for(int i=0;i<n;i++){
+            for(int j=arr[i].dead;j>0;j--){
+                if(profit[j]==-1){
+                    maxprofit+=arr[i].profit;
+                    cnt++;
+                    profit[j]=arr[i].dead;
                     break;
-                   
                 }
             }
-        
-            
         }
-         vector<int>ans;
-            ans.push_back(c);
-            ans.push_back(maxprofit);
-            return ans;
-            
+        ans.push_back(cnt);
+        ans.push_back(maxprofit);
+        return ans;
+        
+        
     } 
 };
 
