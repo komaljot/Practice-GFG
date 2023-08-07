@@ -15,7 +15,7 @@ class Solution
     public:
     //Function to find a solved Sudoku. 
     
-    bool help(int grid[N][N],int r, int c,int k){
+    bool check(int grid[N][N],int r,int c,int k){
         for(int i=0;i<9;i++){
             if(grid[i][c]==k)return false;
             if(grid[r][i]==k)return false;
@@ -31,7 +31,7 @@ class Solution
             for(int j=0;j<N;j++){
                 if(grid[i][j]==0){
                     for(int k=1;k<=9;k++){
-                        if(help(grid,i,j,k)){
+                        if(check(grid,i,j,k)){
                             grid[i][j]=k;
                             if(SolveSudoku(grid))return true;
                             else grid[i][j]=0;
@@ -39,21 +39,23 @@ class Solution
                     }
                     return false;
                 }
+               
             }
         }
         return true;
-        
     }
     
     //Function to print grids of the Sudoku.
     void printGrid (int grid[N][N]) 
     {
-        // Your code here 
+        // Your code here
         SolveSudoku(grid);
-        for(int i=0;i<9;i++){
-            for(int j=0;j<9;j++){
-                cout<<grid[i][j]<<" ";
+        for(int i=0;i<N;i++){
+            for(int j=0;j<N;j++){
+               cout<< grid[i][j]<<" ";
             }
+            //cout<<endl;
+            
         }
     }
 };
