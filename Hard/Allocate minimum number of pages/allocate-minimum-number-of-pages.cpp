@@ -8,109 +8,47 @@ using namespace std;
 // } Driver Code Ends
 //User function template in C++
 
-// class Solution 
-// {
-//     public:
-//     bool allocatebooks(int A[], int N, int M, int mid){
-//         int stds=1;
-//         int pages=0;
-//         for(int i=0;i<N;i++){
-//             if(mid<A[i])return false;
-//             if(A[i]+pages>mid){
-//                 pages+=A[i];
-//                 stds++;
-//             }
-//             else pages+=A[i];
-//         }
-//         if(stds>M)return false;
-//         else return true;
-//     }
-    
-//     //Function to find minimum number of pages.
-//     int findPages(int A[], int N, int M) 
-//     {
-//          sort(A,A+N);
-        
-//         int sum=0;
-//         for(int i=0;i<N;i++){
-//             sum+=A[i];
-//         }
-//         //setting the search space
-//         int s=0;
-//         int e=sum;
-//         int ans=-1;
-//         int mid;
-//         while(s<=e){
-//             mid=s+(e-s)/2;
-//             if(allocatebooks(A,N,M,mid)){
-//                 ans=mid;
-//                 e=mid-1;
-                
-//             }
-//             else s=mid+1;
-            
-//         }
-//         return ans;
-//     }
-//User function template in C++
-
 class Solution 
 {
     public:
     //Function to find minimum number of pages.
     
-    bool isPossible(int arr[],int n,int m,int mid){
-        int pages=0;
+    int allocatemin(int A[],int N,int M,int mid){
         int stds=1;
-        for(int i=0;i<n;i++){
-            if(pages+arr[i]<=mid){
-                 pages+=arr[i];
+        int pages=0;
+        for(int i=0;i<N;i++){
+            if(A[i]>mid)return false;
+            if(A[i]+pages>mid){
+                stds++;
+                pages=A[i];
             }
             else{
-                stds++;
-                if(stds>m || arr[i]>mid)return false;
-                 pages=0;
-                 pages+=arr[i];
+                pages+=A[i];
             }
-           
         }
+        if(stds>M)return false;
         return true;
+        
     }
     
-    
-    int findPages(int A[], int n, int m) 
+    int findPages(int A[], int N, int M) 
     {
-        //code hereif(M>N)return -1;
-        if(m>n)return -1;
-        int s=0;
+        //code here
+        if(M>N)return -1;
         int sum=0;
-        for(int i=0;i<n;i++){
-            sum+=A[i];
-            
-        }
+        for(int i=0;i<N;i++)sum+=A[i];
+        
+        int s=0;
         int e=sum;
-        int ans=-1;
-        int mid=0;
         while(s<=e){
-            mid=s+(e-s)/2;
-            if(isPossible(A,n,m,mid)){
-                
-                ans=mid;
+            int mid=(s+e)>>1;
+            if(allocatemin(A,N,M,mid)){
                 e=mid-1;
             }
-            else{
-                s=mid+1;
-            }
+            else s=mid+1;
         }
-        return ans;
-        
-        
+        return s;
     }
-    
-    
-    
-    
-
 };
 
 //{ Driver Code Starts.
