@@ -18,10 +18,9 @@ class Solution
             for(int j=m;j>=0;j--){
                 if(i==n or j==m)dp[i][j]=0;
                 else{
-                    if(s1[i]==s2[j])dp[i][j]=1+dp[i+1][j+1];
-                    else dp[i][j]=max(dp[i+1][j],dp[i][j+1]);
+                if(s1[i]==s2[j])dp[i][j]=1+dp[i+1][j+1];
+                else dp[i][j]=max(dp[i][j+1],dp[i+1][j]);
                 }
-                
             }
         }
         return dp[0][0];
