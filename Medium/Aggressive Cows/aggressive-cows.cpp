@@ -9,44 +9,34 @@ using namespace std;
 
 class Solution {
 public:
-bool helper(int n, int k, vector<int> &stalls,int s){
-    int cord=stalls[0];int cnt=1;
-    for(int i=1;i<n;i++){
-        if(stalls[i]-cord>=s){
-            cord=stalls[i];
-            cnt++;
+
+bool aggrcows(vector<int>&stalls,int dist,int k){
+    int cows=1; int last=stalls[0];
+    for(int i=1;i<stalls.size();i++){
+        if(stalls[i]-last>=dist){
+            cows++;
+            last=stalls[i];
         }
-        if(cnt==k)return true;
+        if(cows>=k)return true;
     }
     return false;
     
-    
 }
-
 
     int solve(int n, int k, vector<int> &stalls) {
     
         // Write your code here
         sort(stalls.begin(),stalls.end());
-        int ans=0;
-        //setting the search space
         int s=1;
         int e=stalls[n-1]-stalls[0];
-        int mid;
         while(s<=e){
-            mid=s+(e-s)/2;
-            
-            //if we find any one with the number
-            if(helper(n,k,stalls,mid)){
-                ans=mid;
-                //to maximise
+            int mid=(s+e)>>1;
+            if(aggrcows(stalls,mid,k)){
                 s=mid+1;
             }
             else e=mid-1;
-            
-            
         }
-        return ans;
+        return e;
     }
 };
 
