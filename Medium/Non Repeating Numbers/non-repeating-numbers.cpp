@@ -9,31 +9,13 @@ public:
     vector<int> singleNumber(vector<int> nums) 
     {
         // Code here.
-        vector<int>ans;
-        int xorr=0;
-        for(int i=0;i<nums.size();i++){
-            xorr=xorr^nums[i];
+        vector<int>ans; 
+        unordered_map<int,int>mp;
+        for(int i=0;i<nums.size();i++)mp[nums[i]]++;
+        
+        for(auto it:mp){
+            if(it.second==1)ans.push_back(it.first);
         }
-        // int rmsb=1;
-        // while(xorr){
-        //     if(xorr&1){break;}
-        //     rmsb++;
-        //     xorr=xorr>>1;
-            
-        // }
-        // cout<<rmsb;
-         int rmsb=xorr&~(xorr-1);
-        //  cout<<rmsb;
-        int x=0;
-        int y=0;
-        for(int i=0;i<nums.size();i++){
-            if((rmsb&nums[i]))x=x^nums[i];
-            else y=y^nums[i];
-            
-            
-        }
-        ans.push_back(x);
-        ans.push_back(y);
         sort(ans.begin(),ans.end());
         return ans;
     }
