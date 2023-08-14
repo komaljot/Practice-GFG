@@ -16,15 +16,18 @@ class Solution
     unsigned int getFirstSetBit(int n)
     {
         // Your code here
-        int pos=1;
-        while(n){
-            if(n&1){
-                return pos;
-            }
-            pos++;
-            n=n>>1;
-        }
-        return 0;
+        //   int rmsb=n&~(n-1);
+        //   return rmsb;
+           
+           int pos=1;
+           while(n){
+               if(n&1)return pos;
+               else{
+                   pos++;
+                   n=n>>1;
+               }
+           }
+          return 0; 
     }
 };
 
