@@ -13,18 +13,9 @@ class Solution{
     // n: input to count the number of set bits
     //Function to return sum of count of set bits in the integers from 1 to n.
     
-    // int helper(int n){
-    //     int count=0;
-    //     while(n){
-    //         if(n&1)count++;
-    //         n=n>>1;
-    //     }
-    //     return count;
-    // }
-    
-    int p(int n){
+    int highestpow(int n){
         int x=0;
-        while(pow(2,x)<=n){
+        while((1<<x)<=n){
             x++;
         }
         return x-1;
@@ -32,23 +23,15 @@ class Solution{
     int countSetBits(int n)
     {
         // Your logic here
-        // int cnt=0;
-        // for(int i=1;i<=n;i++){
-        //     cnt+=helper(i);
-        // }
-        // return cnt;
-        
-        //1) finding highest power of 2;
-        // int x=0;
-        // while(pow(2,x)<=n)x++;
         if(n==0)return 0;
-        
-        int x=p(n);
-        int ans=pow(2,x-1)*x + n-pow(2,x)+1+ countSetBits(n-pow(2,x));
+        int x=highestpow(n);
+        int a=x*(1<<(x-1));
+        int b=n-(1<<x)+1;
+        int rem=n-(1<<x);
+        int ans=a+b+countSetBits(rem);
         return ans;
-        
-        
     }
+      
 };
 
 
