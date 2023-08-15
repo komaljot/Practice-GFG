@@ -9,41 +9,35 @@ using namespace std;
 
 class Solution {
   public:
-   int minVal(int a, int b) {
-        //first count the set bit of b
-        int cntbit=0;
-        for(int i=0;i<32;i++){
-            if(b&1<<i)
-              cntbit++;
+    int minVal(int a, int b) {
+        // code here
+        int B=b;
+        int setbitsinb=0;
+        while(B){
+            if(B&1)setbitsinb++;
+            B=B>>1;
         }
-     /* now as xor property same ^same=0 
-        0^1=1
-        1^0=1
-        0^0=0
-        1^1=0
-        
-        we have to find the minimum number so the we have to set 
-        the first bit on same as (a) number and decrese the cntbit
-        
-        */
-      //second 
         int ans=0;
-       for(int i=31;i>=0 && cntbit>0;i--){
-           if(a&1<<i){
-               ans=ans|1<<i;
-               cntbit--;
-           }
-       }
-       
-       //third if cnt bit remain the we on the bit from the starting if they are off
-       
-           for(int i=0;i<32 && cntbit>0;i++){
-               if(!(ans&1<<i)){
-                   cntbit--;
-                   ans=ans|1<<i;
-               }
+        for(int i=31;i>=0 && setbitsinb;i--){
+            if(a&(1<<i)){
+                ans|=(1<<i);
+                setbitsinb--;
+                
             }
-       return ans;
+        
+        }
+        
+        for(int i=0;i<32 && setbitsinb ;i++){
+            if((ans&(1<<i))==0){
+               
+                ans|=(1<<i);
+                setbitsinb--;
+            
+            }
+            
+        }
+        return ans;
+        
     }
 };
 
