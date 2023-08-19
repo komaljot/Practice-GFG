@@ -12,31 +12,34 @@ class Solution
     {
         // Your code here
         vector<int>ans;
-       int i=0;
-       int j=1;
-       long long sum=arr[0];
-       if(s==0)return {-1};
-         
-       while(j<n+1 and i<=j){
-           if(sum==s){ans.push_back(i+1);
-               ans.push_back(j);
-               return ans;
-           }
-           if(sum<s){
-               sum+=arr[j];
-               j++;
-               
-           }
-           
-           else if(sum>s){
-              
-               sum-=arr[i];
-               i++;
-           }
-           
-       }
-      
-       return {-1};
+        int i=0;int j=0;
+        long long sum=0;
+        if(s==0)return {-1};
+
+        int p=-1,q=-1;
+        while(j<n+1 and i<=j){
+            
+            if(sum<s){
+                sum+=arr[j];
+                j++;
+            }
+            else if(sum==s){
+                // p=i+1;q=j+1;break;
+                return {i+1,j};
+            }
+            else if(sum>s){
+                while(sum>s){
+                    sum-=arr[i];
+                    i++;
+                }
+               // j++;
+            }
+        }
+        // if(p==-1 and q==-1)
+        return {-1};
+        // ans.push_back(p);ans.push_back(q);
+        // return ans;
+        
     }
 };
 
