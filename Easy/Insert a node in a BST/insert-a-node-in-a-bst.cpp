@@ -38,19 +38,41 @@ class Solution
         Node* insert(Node* node, int data) {
         
             // Your code goes here
-            if(node==NULL)return new Node(data);
-            Node* curr=node;
-            if(data>curr->data){
-                node->right=insert(node->right,data);
+            if(node==NULL){
+                Node* t=new Node(data);
+                return t;
             }
-            else if(data<curr->data){
-                node->left=insert(node->left,data);
+            Node* curr=node;
+            while(true && data!=curr->data){
+                if(data>curr->data){
+                   if(curr->right==NULL){
+                       Node* newNode=new Node(data);
+                       curr->right=newNode;
+                       break;
+                   }
+                   else{
+                       curr=curr->right;
+                   }
+                }
+                else if(data<curr->data){
+                    if(curr->left==NULL){
+                       Node* newNode=new Node(data);
+                       curr->left=newNode;
+                       break;
+                    }
+                    else{
+                        curr=curr->left;
+                    }
+                }
             }
             
             return node;
+            
     }
 
 };
+
+
 
 
 //{ Driver Code Starts.
