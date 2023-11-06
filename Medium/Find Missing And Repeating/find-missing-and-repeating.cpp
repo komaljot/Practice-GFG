@@ -6,30 +6,22 @@ using namespace std;
 // } Driver Code Ends
 class Solution{
 public:
-    int *findTwoElement(int *arr, int n) {
+    vector<int> findTwoElement(vector<int> arr, int n) {
         // code here
-        int re=-1;
-        int me=n+1;
-        int *ans=new int[2];
-        //for finding REPEATING ELEMENT------
-        for(int i=0;i<n;i++){
-            //this implies element already exists!
-            if(arr[abs(arr[i])-1]<0){
-                re=abs(arr[i]);
-            }
-            //turning the element negative if it does not exist
-           else arr[abs(arr[i])-1]=-arr[abs(arr[i])-1];
-            
-        }
+        vector<int>ans;
+        int rn=-1;
+        int mn=-1;
         
-        //for finding MISSING ELEMENT------
         for(int i=0;i<n;i++){
-            //index+1 of the only positive element left will be our answer
-            if(arr[i]>=0)me=i+1;
+            if(arr[abs(arr[i])-1]>0)arr[abs(arr[i])-1]*=-1;
+            else rn=abs(arr[i]);
         }
-        ans[0]=re;ans[1]=me;
+        for(int i=0;i<n;i++){
+            if(arr[i]>0)mn=i+1;
+        }
+        ans.push_back(rn);
+        ans.push_back(mn);
         return ans;
-      
     }
 };
 
@@ -41,7 +33,7 @@ int main() {
     while (t--) {
         int n;
         cin >> n;
-        int a[n];
+        vector<int> a(n);
         for (int i = 0; i < n; i++) {
             cin >> a[i];
         }
